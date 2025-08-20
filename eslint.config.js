@@ -1,29 +1,33 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import { defineConfig, globalIgnores } from 'eslint/config'
+import react from "eslint-plugin-react";
+import babelParser from "@babel/eslint-parser";
 
-export default defineConfig([
-  globalIgnores(['dist']),
+export default [
   {
-    files: ['**/*.{js,jsx}'],
-    extends: [
-      js.configs.recommended,
-      reactHooks.configs['recommended-latest'],
-      reactRefresh.configs.vite,
-    ],
+    files: ["src/**/*.{js,jsx,ts,tsx}"], // lint only JS/TS files in src
     languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
+      parser: babelParser,
       parserOptions: {
-        ecmaVersion: 'latest',
-        ecmaFeatures: { jsx: true },
-        sourceType: 'module',
-      },
+        requireConfigFile: false,
+        ecmaVersion: "latest",
+        sourceType: "module",
+        ecmaFeatures: { jsx: true }
+      }
+    },
+    plugins: {
+      react
     },
     rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      semi: ["error", "always"],
+      quotes: ["error", "single"],
+      "no-unused-vars": "warn"
     },
+    settings: {
+      react: {
+        version: "detect"
+      }
+    }
   },
-])
+  {
+    ignores: ["node_modules/**", "dist/**", ".eslintrc.js"]
+  }
+];
