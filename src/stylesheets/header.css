@@ -1,0 +1,25 @@
+.diary-header {
+  background: #F55A5A;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  height: 55px;
+}
+.header-image {
+  width: 24px;
+  height: 24px;
+  margin-right: 7px;
+}
+.header-text{
+  width: 109px;
+  height: 16px;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14.4608px;
+  line-height: 18px;
+  letter-spacing: -0.075em;
+  color: #FFFFFF;
+}
