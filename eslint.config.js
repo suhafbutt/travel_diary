@@ -1,33 +1,37 @@
-import react from "eslint-plugin-react";
+import js from "@eslint/js";
+import reactPlugin from "eslint-plugin-react";
 import babelParser from "@babel/eslint-parser";
 
 export default [
+  js.configs.recommended,
   {
-    files: ["src/**/*.{js,jsx,ts,tsx}"], // lint only JS/TS files in src
+    files: ["**/*.{js,jsx}"],   // ✅ handle .js and .jsx
     languageOptions: {
       parser: babelParser,
       parserOptions: {
-        requireConfigFile: false,
         ecmaVersion: "latest",
         sourceType: "module",
-        ecmaFeatures: { jsx: true }
-      }
+        ecmaFeatures: {
+          jsx: true,            // ✅ enable JSX
+        },
+        requireConfigFile: false,
+        babelOptions: {
+          presets: ["@babel/preset-react"], // ✅ tell Babel it’s React
+        },
+      },
     },
     plugins: {
-      react
+      react: reactPlugin,
     },
     rules: {
-      semi: ["error", "always"],
-      quotes: ["error", "single"],
-      "no-unused-vars": "warn"
+      "react/react-in-jsx-scope": "off", // React 17+
+      "react/prop-types": "off",        // if not using PropTypes
+      "no-unused-vars": "warn",  // change from error to warning
     },
     settings: {
       react: {
-        version: "detect"
-      }
-    }
+        version: "detect",
+      },
+    },
   },
-  {
-    ignores: ["node_modules/**", "dist/**", ".eslintrc.js"]
-  }
 ];
