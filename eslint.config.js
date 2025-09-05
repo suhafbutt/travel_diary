@@ -19,6 +19,9 @@ export default [
           presets: ["@babel/preset-react"], // ✅ tell Babel it’s React
         },
       },
+      globals: {
+        ...js.environments.browser.globals,  // ✅ adds document, window, etc.
+      },
     },
     plugins: {
       react: reactPlugin,
