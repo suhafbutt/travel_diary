@@ -35,6 +35,8 @@ export default [
     },
     rules: {
       "react/react-in-jsx-scope": "off", // React 17+
+      "react/jsx-uses-react": "off",   // React 17+
+      "react/jsx-uses-vars": "warn",  // ensures JSX components aren’t marked unused
       "react/prop-types": "off",        // if not using PropTypes
       "no-unused-vars": "warn",  // change from error to warning
     },

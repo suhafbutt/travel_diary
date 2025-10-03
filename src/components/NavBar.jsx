@@ -1,5 +1,5 @@
 import '../stylesheets/header.css'
-import globelogo from '../assets/Globe.png';
+import globelogo from '../assets/images/Globe.png';
 
 export function Header() {
   return (
